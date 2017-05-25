@@ -14,7 +14,7 @@ public class Mahasiswa {
 		// TODO Auto-generated constructor stub
 	}
 	
-	Mahasiswa(String Nim, String Nama, String Fakultas, String Jurusan, String Alamat, String Kota,
+	public Mahasiswa(String Nim, String Nama, String Fakultas, String Jurusan, String Alamat, String Kota,
 			String KodePos, String Hobby){
 		
 		setNim(Nim);
@@ -23,6 +23,13 @@ public class Mahasiswa {
 		setJurusan(Jurusan);
 		setAlamat(Alamat);
 		setKota(Kota);
+		setKodePos(KodePos);
+		setHobby(Hobby);
+	}
+	
+	public Mahasiswa(String Nim, String KodePos, String Hobby){
+		
+		setNim(Nim);
 		setKodePos(KodePos);
 		setHobby(Hobby);
 	}
