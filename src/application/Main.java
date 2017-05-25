@@ -138,7 +138,7 @@ public class Main extends Application {
 			@Override
 			public void handle(ActionEvent e) {
 				actiontarget.setFill(Color.FIREBRICK);
-
+				
 				Pane stackPane = new Pane();
 				Scene scene = new Scene(stackPane, 500, 435);
 
@@ -152,7 +152,7 @@ public class Main extends Application {
 				table.setEditable(true);
 
 				TableColumn<Mahasiswa, String> nimColum = new TableColumn<>("Nim");
-				nimColum.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
+				nimColum.prefWidthProperty().bind(table.widthProperty().multiply(0.25));
 				nimColum.setCellValueFactory(new PropertyValueFactory<Mahasiswa, String>("nim"));
 
 				TableColumn<Mahasiswa, String> nameColum = new TableColumn<>("Nama");
@@ -160,7 +160,7 @@ public class Main extends Application {
 				nameColum.setCellValueFactory(new PropertyValueFactory<Mahasiswa, String>("nama"));
 
 				TableColumn<Mahasiswa, String> jurusanColum = new TableColumn<>("Jurusan");
-				jurusanColum.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
+				jurusanColum.prefWidthProperty().bind(table.widthProperty().multiply(0.15));
 				jurusanColum.setCellValueFactory(new PropertyValueFactory<Mahasiswa, String>("jurusan"));
 
 				TableColumn<Mahasiswa, String> AlamatColum = new TableColumn<>("Alamat");

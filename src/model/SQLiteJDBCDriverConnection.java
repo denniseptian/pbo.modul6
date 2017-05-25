@@ -14,7 +14,7 @@ public class SQLiteJDBCDriverConnection {
      * @return 
      */
     public static boolean connect() {
-    	boolean conected = false;
+    	boolean conected = true;
         Connection conn = null;
         try {
             // db parameters
@@ -23,8 +23,9 @@ public class SQLiteJDBCDriverConnection {
             conn = DriverManager.getConnection(url);
             
             System.out.println("Connection to SQLite has been established.");
-            conected = true;
+            
         } catch (SQLException e) {
+        	conected = false;
             System.out.println(e.getMessage());
         } finally {
             try {

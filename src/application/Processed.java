@@ -4,14 +4,33 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import model.SQLite;
+
 public class Processed {
 	ArrayList<Mahasiswa> mahasiswa = new ArrayList<Mahasiswa>();
+	SQLite sqLite = new SQLite();
+	
+	public Processed() {
+		// TODO Auto-generated constructor stub
+		try {
+			mahasiswa.addAll(sqLite.selectAll());
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+	}
 
 	public void tambah(String Nim, String Nama, String Fakultas, String Jurusan, String Alamat, String Kota,
 			String KodePos, String Hobby) {
 		System.out.println("Data come!");
 		if (mahasiswa.size() == 0) {
 			mahasiswa.add(new Mahasiswa(Nim, Nama, Fakultas, Jurusan, Alamat, Kota, KodePos, Hobby));
+			try {
+				sqLite.insert(Nim, Nama, Fakultas, Jurusan, Alamat, Kota, KodePos, Hobby);
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e);
+			}
 			JOptionPane.showMessageDialog(null, "Tersimpan!");
 		} else {
 
@@ -23,6 +42,12 @@ public class Processed {
 					break;
 				} else if (!Nim.equals(mahasiswa.get(i).getNim()) && i == mahasiswa.size() - 1) {
 					mahasiswa.add(new Mahasiswa(Nim, Nama, Fakultas, Jurusan, Alamat, Kota, KodePos, Hobby));
+					try {
+						sqLite.insert(Nim, Nama, Fakultas, Jurusan, Alamat, Kota, KodePos, Hobby);
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println(e);
+					}
 					JOptionPane.showMessageDialog(null, "Tersimpan!");
 					System.out.println("Over here!");
 					break;
@@ -56,6 +81,12 @@ public class Processed {
 
 			} else if (mahasiswa.get(i).getNim().equals(nim)) {
 				mahasiswa.remove(i);
+				try {
+					sqLite.delete(nim, i);
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println(e);
+				}
 				JOptionPane.showMessageDialog(null, "Deleted!");
 				break;
 			}
@@ -76,6 +107,15 @@ public class Processed {
 	}
 	
 	public void update(String key, Mahasiswa onCome){
+		String Nim = onCome.getNim();
+		String Nama = onCome.getNama();
+		String Fakultas = onCome.getFakultas();
+		String Jurusan = onCome.getJurusan();
+		String Alamat = onCome.getAlamat();
+		String Kota = onCome.getKota();
+		String KodePos = onCome.getKodePos();
+		String Hobby = onCome.getHobby();
+		
 		for (int i = 0; i < mahasiswa.size(); i++) {
 			if (mahasiswa.size() == 0) {
 				JOptionPane.showMessageDialog(null, "No data available!");
@@ -83,6 +123,12 @@ public class Processed {
 			} else if (mahasiswa.get(i).getNim().equals(key)) {
 				//here
 				mahasiswa.set(i, onCome);
+				try {
+					sqLite.update(Nim, Nama, Fakultas, Jurusan, Alamat, Kota, KodePos, Hobby);
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println(e);
+				}
 			}
 		}
 	}
